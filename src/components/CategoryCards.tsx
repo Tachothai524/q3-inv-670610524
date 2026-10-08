@@ -8,7 +8,13 @@ import {
   Wrench,
   MoreHorizontal,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from "@/components/ui/card";
 
 const iconMap: Record<string, React.ReactNode> = {
   Electronics: <Laptop className="h-4 w-4" />,
@@ -39,10 +45,22 @@ export function CategoryCards() {
 
         return (
           // Use Card component to display values by category
-          <div>
-            {category.label} - ฿{categoryValue.toFixed(2)} - {categoryUnits}{" "}
-            units
-          </div>
+          <Card>
+            <CardHeader>
+              {/* {iconMap.(category.label)} */}
+              {category.label}
+            </CardHeader>
+            <CardContent>
+              <CardTitle>
+                ฿{categoryValue.toFixed(2)}
+                <CardDescription>{categoryUnits} unit</CardDescription>
+              </CardTitle>
+            </CardContent>
+          </Card>
+          // <div>
+          //   {category.label} - ฿{categoryValue.toFixed(2)} - {categoryUnits}{" "}
+          //   units
+          // </div>
         );
       })}
     </div>

@@ -26,7 +26,7 @@ export function AddItemDialog() {
     e.preventDefault();
     if (!name || !quantity || !price) return;
 
-    // addInventoryItem(name, parseInt(quantity), parseFloat(price), category);
+    addInventoryItem(name, parseInt(quantity), parseFloat(price), category);
     setName("");
     setQuantity("");
     setPrice("");
@@ -101,6 +101,7 @@ export function AddItemDialog() {
           <Button
             type="submit"
             className="w-full bg-blue-500 hover:bg-blue-600"
+            onClick={() => addInventoryItem}
           >
             Save Product
           </Button>

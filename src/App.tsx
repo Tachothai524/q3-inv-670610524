@@ -2,8 +2,12 @@ import { AddItemDialog } from "./components/AddItemDialog";
 import { ItemList } from "./components/ItemList";
 import { Footer } from "./components/Footer";
 import { OverviewCards } from "./components/OverviewCards";
+import { Tabs, TabsTrigger, TabsList, TabsContent } from "@/components/ui/tabs";
+import { useState } from "react";
+import { CategoryCards } from "./components/CategoryCards";
 
 export default function App() {
+  const [mode, setmode] = useState<"Overview" | "By Category">("Overview");
   return (
     <div className="flex flex-col min-h-screen bg-slate-50">
       {/* Main Content Area */}
@@ -24,7 +28,21 @@ export default function App() {
 
           {/* Put OverviewCards and CategoryCards under DashboardTabs */}
           {/* And then use DashboardTabs here instead */}
-          <OverviewCards />
+          <Tabs
+            value={mode}
+            onValueChange={(v) => setmode(v as "Overview" | "By Category")}
+          >
+            <TabsList>
+              <TabsTrigger value="Overview">Overview</TabsTrigger>
+              <TabsTrigger value="By Category">By Category</TabsTrigger>
+            </TabsList>
+            <TabsContent value="Overview" className="pt-2">
+              <OverviewCards />
+            </TabsContent>
+            <TabsContent value="By Category" className="pt-2">
+              <CategoryCards />
+            </TabsContent>
+          </Tabs>
           <ItemList />
         </div>
       </main>
